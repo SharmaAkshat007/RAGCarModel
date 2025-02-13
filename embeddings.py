@@ -9,7 +9,7 @@ import httpx
 from tenacity import retry, stop_after_attempt, wait_exponential
 import pandas as pd
 import numpy as np
-from tqdm import tqdm
+
 
 class CustomOllamaEmbeddingFunction(OllamaEmbeddingFunction):
     def __init__(self, url: str = "http://localhost:11434", model_name: str = "nomic-embed-text:latest"):
@@ -99,5 +99,5 @@ if __name__ == '__main__':
     vector_store = VectorStore("nomic-embed-text:latest", "car_model", "Car Model Collection", "./vector-embeddings", 'cosine', 5000, 5000, 5000)
     print("Adding data to vector store")
     for i in  tqdm(range(99, ids.shape[0])):
-        print(f"Adding {ids[i]}")
         vector_store.add_data(ids[i], keys[i])
+        print(f"Added {i}")
