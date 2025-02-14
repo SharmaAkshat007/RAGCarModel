@@ -7,9 +7,15 @@ if __name__ == "__main__":
     df["Id"] = df["Id"].astype(str)
     ids = df["Id"].tolist()
     keys = df["Key"].tolist()
-    vector_store = VectorStore("BAAI/bge-small-en-v1.5", "car_model", "Car Model Collection", "./vector-embeddings", 'cosine', 500, 500, 500)
-    batch_size = 32
-    for i in tqdm(range(0, len(ids), batch_size)):
-        batch_ids = ids[i:i + batch_size]
-        batch_keys = keys[i:i + batch_size]
-        vector_store.add_data(batch_ids, batch_keys)
+    values = df['Value'].tolist()
+    values_dict = []
+    for index in range(len(values)):
+        value = {"value": values[index]}
+        values_dict.append(value)
+    vector_store = VectorStore("BAAI/bge-small-en-v1.5", "car_model", "Car Model Collection", "./vector_embedding", 'cosine', 500, 500, 500)
+    batch_len = 32
+    for i in tqdm(range(0, len(ids), batch_len)):
+        batch_ids = ids[i:i+batch_len]
+        batch_keys = keys[i:i+batch_len]
+        batch_values = values_dict[i:i+batch_len]
+        vector_store.add_data(batch_ids, batch_keys, batch_values)

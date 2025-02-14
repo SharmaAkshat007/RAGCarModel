@@ -1,3 +1,5 @@
 env/
 train.csv
 test.csv
+vector-embeddings/
+__pycache__/

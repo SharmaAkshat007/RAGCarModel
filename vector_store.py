@@ -20,9 +20,12 @@ class VectorStore:
             }
         )
 
-    def add_data(self, IDs: List[str], texts: List[str]):
-        if len(IDs) != len(texts):
+    def add_data(self, IDs: List[str], keys: List[str], values: List[dict]):
+        if len(IDs) != len(keys) or len(keys) != len(values):
             raise ValueError("IDs and texts lists must have the same length")
-
-        embeddings = self.model.encode(texts, normalize_embeddings=True).tolist()
-        self.collection.add(ids=IDs, embeddings=embeddings, documents=texts)
+        embeddings = self.model.encode(keys, normalize_embeddings=True).tolist()
+        self.collection.add(ids=IDs, embeddings=embeddings, documents=keys, metadatas=values)
+        
+    def search(self, query: str, k: int):
+      query_embedding = self.model.encode(query, normalize_embeddings=True).tolist()
+      return self.collection.query(query_embeddings=query_embedding, n_results=k)
