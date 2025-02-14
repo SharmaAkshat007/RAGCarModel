@@ -11,8 +11,8 @@ class Query:
         self.prompt = PromptTemplate(
         input_variables=["input_key", "similar_keys" "similar_values", "distances"],
         template=(
-            "Given the input key: {input_key}, think critically and reason through the retrieved vector search results "
-            "to determine the most relevant value. {similar_keys} and {similar_values} are key value mapping. All these mappings are of car models.\n\n"
+            "You know all the cars model. Given the input key: {input_key}, think critically and reason through the retrieved vector search results "
+            "to determine the most relevant value. {similar_keys} and {similar_values} are key value mapping. {similar_keys} {similar_values} {input_key} data inside them is of car models. Use this information for giving more contextually aware answers\n\n"
             "### Retrieved Data:\n"
             "- **Similar Keys:** {similar_keys}\n"
             "- **Similar Values:** {similar_values}\n"
