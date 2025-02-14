@@ -26,8 +26,10 @@ This project implements a vector similarity search system for car models using s
 ├── embeddings.py
 ├── query.py
 ├── vector_store.py
-├── train.csv
 ├── README.md
+├── LICENSE.txt
+├── requirements.txt
+├── .gitignore
 ```
 
 ## Setup
@@ -114,3 +116,7 @@ The vector store can be configured with the following parameters:
 3. Commit your changes
 4. Push to the branch
 5. Create a Pull Request
+
+## License
+
+This project is open-sourced under the MIT License - see the LICENSE file for details.
