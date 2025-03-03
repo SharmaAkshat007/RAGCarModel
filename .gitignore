@@ -3,3 +3,4 @@ train.csv
 test.csv
 vector-embeddings/
 __pycache__/
+test-embeddings/
